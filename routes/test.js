@@ -40,93 +40,86 @@ router.post('/createPE',function(req, res){
 
 })
 
-router.post('/createPM',function(req, res){
+router.post('/createPM', async function(req, res){
     console.log(typeof(positivityExam));
-    // for(let i=0; i < 1000; i++){
-    //     PM = new positivityMessages({
-    //         Sender: req.body.Sender,
-    //         Receiver: req.body.Receiver,
-    //         message: req.body.message,
-    //         type: "thank you",
-    //         entity: req.body.entity,
-    //     }) 
-    //     PM.save( (err,saved) =>{
-    //         if(err){
-    //             console.log(err);
-    //             res.send({success: "failed"});
-    //         }
-    //     })
-    //     PM = new positivityMessages({
-    //         Sender: req.body.Sender,
-    //         Receiver: req.body.Receiver,
-    //         message: req.body.message,
-    //         type: "congrates",
-    //         entity: req.body.entity,
-    //     }) 
-    //     PM.save( (err,saved) =>{
-    //         if(err){
-    //             console.log(err);
-    //             res.send({success: "failed"});
-    //         }
-    //     })
-    //     PM = new positivityMessages({
-    //         Sender: req.body.Sender,
-    //         Receiver: req.body.Receiver,
-    //         message: req.body.message,
-    //         type: 'positive message',
-    //         entity: req.body.entity,
-    //     }) 
-    //     PM.save( (err,saved) =>{
-    //         if(err){
-    //             console.log(err);
-    //             res.send({success: "failed"});
-    //         }
-    //     })
-    //     PM = new positivityMessages({
-    //         Sender: req.body.Sender,
-    //         Receiver: req.body.Receiver,
-    //         message: req.body.message,
-    //         type: 'good job',
-    //         entity: req.body.entity,
-    //     }) 
-    //     PM.save( (err,saved) =>{
-    //         if(err){
-    //             console.log(err);
-    //             res.send({success: "failed"});
-    //         }
+    for(let i=0; i < 1000; i++){
+        PM = new positivityMessages({
+            Sender: req.body.Sender,
+            Receiver: req.body.Receiver,
+            message: req.body.message,
+            type: "thank you",
+            entity: req.body.entity,
+        }) 
+        PM.save( (err,saved) =>{
+            if(err){
+                console.log(err);
+                res.send({success: "failed"});
+            }
+        })
+        PM = new positivityMessages({
+            Sender: req.body.Sender,
+            Receiver: req.body.Receiver,
+            message: req.body.message,
+            type: "congrates",
+            entity: req.body.entity,
+        }) 
+        PM.save( (err,saved) =>{
+            if(err){
+                console.log(err);
+                res.send({success: "failed"});
+            }
+        })
+        PM = new positivityMessages({
+            Sender: req.body.Sender,
+            Receiver: req.body.Receiver,
+            message: req.body.message,
+            type: 'positive message',
+            entity: req.body.entity,
+        }) 
+        PM.save( (err,saved) =>{
+            if(err){
+                console.log(err);
+                res.send({success: "failed"});
+            }
+        })
+        PM = new positivityMessages({
+            Sender: req.body.Sender,
+            Receiver: req.body.Receiver,
+            message: req.body.message,
+            type: 'good job',
+            entity: req.body.entity,
+        }) 
+        PM.save( (err,saved) =>{
+            if(err){
+                console.log(err);
+                res.send({success: "failed"});
+            }
 
-    //     })
-    //     PM = new positivityMessages({
-    //         Sender: req.body.Sender,
-    //         Receiver: req.body.Receiver,
-    //         message: req.body.message,
-    //         type: 'do you need help?',
-    //         entity: req.body.entity,
-    //     }) 
-    //     PM.save( (err,saved) =>{
-    //         if(err){
-    //             console.log(err);
-    //             res.send({success: "failed"});
-    //         }
-    //     })
-    // }
-    // res.send({success: "saved"});
+        })
+        PM = new positivityMessages({
+            Sender: req.body.Sender,
+            Receiver: req.body.Receiver,
+            message: req.body.message,
+            type: 'do you need help?',
+            entity: req.body.entity,
+        }) 
+        PM.save( (err,saved) =>{
+            if(err){
+                console.log(err);
+                res.send({success: "failed"});
+            }
+        })
+    }
+    res.send({success: "saved"});
 
     // Testing the aggregation to get the number of every message type specific user in over 1300 user
-    const Count = positivityMessages.aggregate([  
-        {
-            $match: {
-                "Sender": ObjectId(req.body.Sender)
-            }
-        },
-        {
-            "$unwind":"$type"
-        },
-        {
-            "$sortByCount": "$type"
-        },
-    ]);
-    res.send({Count: Count});
+    // const Count = await positivityMessages.aggregate([  
+    //     {$match: {"Sender": ObjectId("5c10d670d8f43b21b4b55bc2")}},
+    //     {"$unwind":"$type"},
+    //     {"$sortByCount": "$type"},
+    //   ]);
+    //   console.log(Count);
+    // res.send({Count: Count});
 
 
 
