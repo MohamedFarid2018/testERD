@@ -38,10 +38,10 @@
         "default": false
     },
     "file_data": {
-        "file_name": {
+        "name": {
             "type": "String"
         },
-        "file_type": {
+        "type": {
             "type": "String",
             "enum": [
                 "pdf",
@@ -50,10 +50,15 @@
         }
     },
     "publishing_data": {
-        "Published_by": {
-            "type": "Schema.Types.ObjectId"
+        "by": {
+            "User": {
+                "type": "Schema.Types.ObjectId"
+            },
+            "name": {
+                "type": "String"
+            }
         },
-        "publishing_status": [
+        "status": [
             {
                 "status": {
                     "type": "String",
@@ -70,7 +75,7 @@
                 }
             }
         ],
-        "publishing_active_state": {
+        "active_state": {
             "type": "String",
             "enum": [
                 "approved",
@@ -79,22 +84,27 @@
                 "unseen"
             ]
         },
-        "publishing_note": {
+        "note": {
             "type": "String"
         }
     },
     "modification_data": [
         {
-            "Modification_by": {
-                "type": "Schema.Types.ObjectId"
+            "by": {
+                "User": {
+                    "type": "Schema.Types.ObjectId"
+                },
+                "name": {
+                    "type": "String"
+                }
             },
-            "modification_content": {
+            "content": {
                 "type": "String"
             },
-            "modification_date": {
+            "date": {
                 "type": "Date"
             },
-            "modification_status": [
+            "status": [
                 {
                     "status": {
                         "type": "String",
@@ -111,10 +121,10 @@
                     }
                 }
             ],
-            "modification_note": {
+            "note": {
                 "type": "String"
             },
-            "modification_active_state": {
+            "active_state": {
                 "type": "String",
                 "default": "unseen",
                 "enum": [
@@ -126,90 +136,52 @@
             }
         }
     ],
-    "liked": [
-        {
-            "User": {
-                "type": "Schema.Types.ObjectId"
-            },
-            "liked_date": {
-                "type": "Date"
-            }
-        }
-    ],
-    "disliked": [
-        {
-            "User": {
-                "type": "Schema.Types.ObjectId"
-            },
-            "disliked_date": {
-                "type": "Date"
-            }
-        }
-    ],
-    "favourites": [
-        {
-            "User": {
-                "type": "Schema.Types.ObjectId"
-            },
-            "favourite_date": {
-                "type": "Date"
-            }
-        }
-    ],
-    "pinned": [
-        {
-            "User": {
-                "type": "Schema.Types.ObjectId"
-            },
-            "pinned_date": {
-                "type": "Date"
-            }
-        }
-    ],
-    "read": [
-        {
-            "User": {
-                "type": "Schema.Types.ObjectId"
-            },
-            "read_date": {
-                "type": "Date"
-            }
-        }
-    ],
-    "reading": [
-        {
-            "User": {
-                "type": "Schema.Types.ObjectId"
-            },
-            "reading_date": {
-                "type": "Date"
-            }
-        }
-    ],
     "comments": [
         {
             "User": {
                 "type": "Schema.Types.ObjectId"
             },
-            "comment_date": {
+            "date": {
                 "type": "Date"
             },
-            "comment_content": {
+            "content": {
                 "type": "String"
             }
         }
     ],
-    "share": [
+    "shares": [
         {
-            "Shared_by": {
+            "By": {
                 "type": "Schema.Types.ObjectId"
             },
-            "Shared_to": {
+            "To": {
                 "type": "Schema.Types.ObjectId"
             },
-            "share_date": {
+            "date": {
                 "type": "Date"
+            },
+            "notes": {
+                "type": "String"
             }
         }
-    ]
+    ],
+    "action": {
+        "type": {
+            "type": "String",
+            "enum": [
+                "like",
+                "dis-like",
+                "favorite",
+                "pinned",
+                "read",
+                "reading"
+            ]
+        },
+        "date": {
+            "type": "Date"
+        },
+        "User": {
+            "type": "Schema.Types.ObjectId"
+        }
+    }
 }
