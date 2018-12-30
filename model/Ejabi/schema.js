@@ -19,18 +19,22 @@ let PositivityExamSchema = new Schema({
             ],
         },
     ],
-    users: [
-        {
-            User: {
-                type: objectId,
-                ref: 'User',
+    users: {
+        type: [
+            {
+                User: {
+                    type: objectId,
+                    ref: 'User',
+                },
+                name: String,
+                position: String,
+                final_degree: Number,
+                level: Number,
             },
-            name: String,
-            position: String,
-            final_degree: Number,
-            level: Number,
-        },
-    ],
+        ],
+        default: [],
+    }
+    
     
     
 })
