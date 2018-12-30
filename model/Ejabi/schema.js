@@ -6,34 +6,33 @@ const {ejabiEnums} = require('../../shared/enums');
 const EjabiSchema = new Schema({
 })
 
-let PositivityQuestionsSchema = new Schema({
-    question: String,
-    answers: [
-        {
-            answer: String,
-            value:Number,
-        }
-    ]
-})
-
-let PositivityTestSchema = new Schema({
-    User: {
-        type: objectId,
-        ref: 'User',
-    },
-    percentage: Number,
-    level: String,
+let PositivityExamSchema = new Schema({
+    title: String,
     questions: [
         {
-            PositivityQuestion:{
-                type: objectId,
-                ref: 'PositivityTest',
-            },
             question: String,
-            answer: String,
-            value: Number,
-        }
-    ]
+            answers: [
+                {
+                    answer: String,
+                    value: Number,
+                },
+            ],
+        },
+    ],
+    users: [
+        {
+            User: {
+                type: objectId,
+                ref: 'User',
+            },
+            name: String,
+            position: String,
+            final_degree: Number,
+            level: Number,
+        },
+    ],
+    
+    
 })
 
 
@@ -140,6 +139,5 @@ module.exports.EjabiSchema = EjabiSchema;
 module.exports.pollsSchema = pollsSchema;
 module.exports.polls_dbSchema = polls_dbSchema;
 module.exports.PositivityMessagesSchema = PositivityMessagesSchema;
-module.exports.PositivityQuestionsSchema = PositivityQuestionsSchema;
-module.exports.PositivityTestSchema = PositivityTestSchema;
+module.exports.PositivityExamSchema = PositivityExamSchema;
 module.exports.NeedBotEvaluationRequestsSchema = NeedBotEvaluationRequestsSchema;
