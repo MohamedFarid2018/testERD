@@ -7,7 +7,7 @@ const test = require('./routes/test');
 
 
 router.route('/').get((req, res) => {
-    res.json({ message: 'Welcome to full-app-restapi API!' });
+    res.json({ message: 'Welcome to our ERD Testing API!' });
 });
 
 

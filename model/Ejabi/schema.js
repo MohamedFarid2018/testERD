@@ -1,10 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const objectId = mongoose.Types.objectId;
+const { ObjectId } = Schema.Types;
 const {ejabiEnums} = require('../../shared/enums');
 
 const EjabiSchema = new Schema({
 })
+
+const usersPositivitySchema = new Schema({
+    User: {
+        type: ObjectId,
+        ref: 'User',
+    },
+    name: String,
+    position: String,
+    final_degree: Number,
+    level: String,
+})
+
 
 let PositivityExamSchema = new Schema({
     title: String,
@@ -20,18 +32,7 @@ let PositivityExamSchema = new Schema({
         },
     ],
     users: {
-        type: [
-            {
-                User: {
-                    type: objectId,
-                    ref: 'User',
-                },
-                name: String,
-                position: String,
-                final_degree: Number,
-                level: Number,
-            },
-        ],
+        type: [usersPositivitySchema],
         default: [],
     }
     
@@ -42,22 +43,22 @@ let PositivityExamSchema = new Schema({
 
 let PositivityMessagesSchema = new Schema({
     Sender: {
-        type: objectId,
+        type: ObjectId,
         ref: 'User',
     },
     Receiver: {
-        type: objectId,
+        type: ObjectId,
         ref: 'User',
     },
     message: String,
     type: {
         type: String,
-        // enum: ['thank you',' congrates', 'positive message', 'good job', 'do you need help?'],
+        enum: ['thank you',' congrates', 'positive message', 'good job', 'do you need help?'],
         enum: Object.values(ejabiEnums.PositivityMessages),
     },
     entity:{
         Entity: {
-            type: objectId,
+            type: ObjectId,
             ref: 'Organization', // created by Soliman
         },
         name: String,
@@ -70,7 +71,7 @@ let PositivityMessagesSchema = new Schema({
 let NeedBotEvaluationRequestsSchema = new Schema({
     user: {
         User: {
-            type: objectId,
+            type: ObjectId,
             ref: 'User',
         },
         name: String,
@@ -82,7 +83,7 @@ let NeedBotEvaluationRequestsSchema = new Schema({
     },
     entity:{
         Entity: {
-            type: objectId,
+            type: ObjectId,
             ref: 'Organization', // created by Soliman
         },
         name: String,
@@ -95,7 +96,7 @@ let NeedBotEvaluationRequestsSchema = new Schema({
 let pollsSchema = new Schema({
     question: String,
     question_type: String,
-    tag: tag,
+    tag: String,
     language: String,
     color: String,
     created_at: {
@@ -106,17 +107,17 @@ let pollsSchema = new Schema({
 
 let polls_dbSchema = new Schema({
 
-    tag: tag,
+    tag: String,
     poll: {
         Poll: {
-            type: objectId,
+            type: ObjectId,
             ref: 'polls',
         },
         question: String,
     },
     asked_user: {
         AskedUser: {
-            type: objectId,
+            type: ObjectId,
             ref: 'User',
         },
         name: String,
@@ -124,7 +125,7 @@ let polls_dbSchema = new Schema({
     },
     selected_user: {
         SelectedUser: {
-            type: objectId,
+            type: ObjectId,
             ref: 'User',
         },
         name: String,

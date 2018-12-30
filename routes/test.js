@@ -6,7 +6,8 @@ router.get('/',function(req, res){
    
 })
 
-router.post('/',function(req, res){
+router.post('/createPE',function(req, res){
+    positivityExam.insert(req.body);
 
 })
 
