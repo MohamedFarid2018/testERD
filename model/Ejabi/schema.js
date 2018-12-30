@@ -53,7 +53,6 @@ let PositivityMessagesSchema = new Schema({
     message: String,
     type: {
         type: String,
-        enum: ['thank you',' congrates', 'positive message', 'good job', 'do you need help?'],
         enum: Object.values(ejabiEnums.PositivityMessages),
     },
     entity:{
@@ -139,10 +138,16 @@ let polls_dbSchema = new Schema({
 })
 
 
+const Ejabi = mongoose.model('Ejabi',EjabiSchema);
+const polls = mongoose.model('polls',pollsSchema);
+const polls_db = mongoose.model('polls_db', polls_dbSchema);
+const PositivityMessage = mongoose.model('PositivityMessages',PositivityMessagesSchema);
+const PositivityExam = mongoose.model('PositivityExam',PositivityExamSchema);
+const NeedBotEvaluationRequests = mongoose.model('NeedBotEvaluationRequests', NeedBotEvaluationRequestsSchema); 
 
-module.exports.EjabiSchema = EjabiSchema;
-module.exports.pollsSchema = pollsSchema;
-module.exports.polls_dbSchema = polls_dbSchema;
-module.exports.PositivityMessagesSchema = PositivityMessagesSchema;
-module.exports.PositivityExamSchema = PositivityExamSchema;
-module.exports.NeedBotEvaluationRequestsSchema = NeedBotEvaluationRequestsSchema;
+module.exports.Ejabi = Ejabi;
+module.exports.polls = polls;
+module.exports.polls_db = polls_db;
+module.exports.PositivityMessage = PositivityMessage;
+module.exports.PositivityExam = PositivityExam;
+module.exports.NeedBotEvaluationRequests = NeedBotEvaluationRequests;
