@@ -2,8 +2,8 @@ var fs = require('fs');
 const express = require('express');
 const Router = require('express').Router;
 const router = new Router();
-
-const test = require('./routes/test');
+const testEjabi = require('./routes/testEjabi');
+const testNeed = require('./routes//testNeed');
 
 
 router.route('/').get((req, res) => {
@@ -11,7 +11,8 @@ router.route('/').get((req, res) => {
 });
 
 
-router.use('/test', test);
+router.use('/testEjabi', testEjabi);
+router.use('/testNeed', testNeed);
 
 
 // catch 404 and forward to error handler
